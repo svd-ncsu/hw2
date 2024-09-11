@@ -1,4 +1,4 @@
-flake8.checker            MainProcess     93 INFO     Making checkers
-flake8.main.application   MainProcess     96 INFO     Finished running
-flake8.main.application   MainProcess     96 INFO     Reporting errors
-flake8.main.application   MainProcess     97 INFO     Found a total of 0 violations and reported 0
+flake8.checker            MainProcess     91 INFO     Making checkers
+flake8.main.application   MainProcess     94 INFO     Finished running
+flake8.main.application   MainProcess     94 INFO     Reporting errors
+flake8.main.application   MainProcess     94 INFO     Found a total of 0 violations and reported 0
