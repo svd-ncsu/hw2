@@ -6,27 +6,33 @@ def mergeSort(arr):
         return arr
 
     half = len(arr) // 2
-
+    
     return recombine(mergeSort(arr[:half]), mergeSort(arr[half:]))
 
 
 def recombine(leftArr, rightArr):
     leftIndex = 0
     rightIndex = 0
+    if leftArr[leftIndex] == None:
+        leftArr = leftArr[leftIndex:]
+    if rightArr[rightIndex] == None:
+        rightArr = rightArr[rightIndex+1:]
     mergeArr = [None] * (len(leftArr) + len(rightArr))
     while leftIndex < len(leftArr) and rightIndex < len(rightArr):
         if leftArr[leftIndex] < rightArr[rightIndex]:
-            rightIndex += 1
             mergeArr[leftIndex + rightIndex] = leftArr[leftIndex]
-        else:
             leftIndex += 1
+        else:
             mergeArr[leftIndex + rightIndex] = rightArr[rightIndex]
+            rightIndex += 1
 
     for i in range(rightIndex, len(rightArr)):
         mergeArr[leftIndex + rightIndex] = rightArr[i]
+        rightIndex += 1
 
     for i in range(leftIndex, len(leftArr)):
         mergeArr[leftIndex + rightIndex] = leftArr[i]
+        leftIndex += 1
 
     return mergeArr
 
