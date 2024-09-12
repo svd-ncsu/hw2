@@ -3,10 +3,13 @@
 
 name: Python application
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -15,6 +18,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
     - name: Set up Python 3.13
       uses: actions/setup-python@v3
       with:
@@ -29,16 +34,35 @@ jobs:
       run: |
         autopep8 --in-place --recursive .
         
-    - name: Lint with flake8
+    - name: Check for changes
       run: |
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        git config --global user.name "GitHub Action"
+        git config --global user.email "action@github.com"
+        git add .
+        git diff-index --quiet HEAD || git commit -m "Automatically format code with autopep8"
     
-    - name: Run pyright
+    - name: Push changes
+      if: success()
       run: |
-        pyright
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+    # Run Pyright and append traces with timestamps
+    - name: Run pyright and save traces with timestamp
+      run: |
+        echo "Pyright Trace for hw2_debugging.py - $(date)" >> post_traces/pyright_hw2_debugging.txt
+        pyright hw2_debugging.py >> post_traces/pyright_hw2_debugging.txt
+        echo "Pyright Trace for rand.py - $(date)" >> post_traces/pyright_rand.txt
+        pyright rand.py >> post_traces/pyright_rand.txt
+
+    # Run flake8 and append traces with timestamps
+    - name: Run flake8 and save traces with timestamp
+      run: |
+        echo "Flake8 Trace for hw2_debugging.py - $(date)" >> post_traces/flake8_hw2_debugging.txt
+        flake8 --verbose hw2_debugging.py >> post_traces/flake8_hw2_debugging.txt
+        echo "Flake8 Trace for rand.py - $(date)" >> post_traces/flake8_rand.txt
+        flake8 --verbose rand.py >> post_traces/flake8_rand.txt 
         
     - name: Test with pytest
       run: |
