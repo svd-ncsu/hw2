@@ -56,7 +56,7 @@ jobs:
     - name: Run pyright and save traces with timestamp
       run: |
         mkdir -p post_traces
-        echo -e "\nPyright Trace for rand.py - $(date)" >> post_traces/pyright_trace.txt
+        echo -e "\nPyright Trace - $(date)" >> post_traces/pyright_trace.txt
         pyright >> post_traces/pyright_trace.txt
     - uses: jakebailey/pyright-action@v1
 
