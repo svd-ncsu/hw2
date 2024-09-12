@@ -27,7 +27,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install autopep8 flake8 pyright pytest pytest-cov
+        pip install autopep8 flake8 pyright pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
     - name: Format code with autopep
@@ -73,3 +73,15 @@ jobs:
     - name: Test with pytest
       run: |
         pytest test.py
+
+    - name: Code coverage with coverage-badge
+      uses: cypress-io/github-action@v6
+      with: 
+          start: npm start
+
+    - name: Update code coverage badge
+      run: npx update-badge
+    
+    - uses: /svd-ncsu@action
+      env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
