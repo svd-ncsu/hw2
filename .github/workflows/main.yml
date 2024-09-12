@@ -76,5 +76,5 @@ jobs:
 
     - name: Code Coverage report
       run: 
-        pytest --cov-report xml:/reports/coverage/coverage.xml --cov=. test.py
+        pytest --cov-report xml:post_traces/coverage.xml --cov=. test.py
 
