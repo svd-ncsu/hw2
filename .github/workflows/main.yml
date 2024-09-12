@@ -80,4 +80,4 @@ jobs:
 
     - name: Create Badge
       run: 
-        genbadge flake8 -i - < post_traces/flake8_hw2_debugging
+        genbadge flake8 -i - < post_traces/flake8_hw2_debugging.txt
