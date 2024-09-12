@@ -6,5 +6,5 @@ def random_array(arr):
     for i in range(len(arr)):
         shuffled_num = subprocess.run(
             ["shuf", "-i1-20", "-n1"], capture_output=True)
-        arr[i] = int(shuffled_num.stdout)
+        arr(i) = int(shuffled_num.stdout)
     return arr
