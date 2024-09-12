@@ -1,5 +1,6 @@
 import rand
 
+
 def mergeSort(arr):
     if (len(arr) == 1):
         return arr
@@ -7,6 +8,7 @@ def mergeSort(arr):
     half = len(arr) // 2
 
     return recombine(mergeSort(arr[:half]), mergeSort(arr[half:]))
+
 
 def recombine(leftArr, rightArr):
     leftIndex = 0
