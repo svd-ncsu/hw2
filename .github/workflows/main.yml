@@ -27,7 +27,7 @@ jobs:
 
     - name: Format code with autopep
       run: |
-        autopep8 --in-place --recursive
+        autopep8 --in-place --recursive .
         
     - name: Lint with flake8
       run: |
