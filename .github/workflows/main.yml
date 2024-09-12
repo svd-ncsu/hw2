@@ -54,14 +54,14 @@ jobs:
         flake8 --exit-zero --statistics --tee --output-file reports/flake8/flake8stats.txt
 
     # Run Pyright and append traces with timestamps
-    - name: Run pyright and save traces with timestamp
-      run: |
-        mkdir -p post_traces
-        echo -e "\nPyright Trace for hw2_debugging.py - $(date)" >> post_traces/pyright_hw2_debugging.txt
-        pyright hw2_debugging.py >> post_traces/pyright_hw2_debugging.txt
-        echo -e "\nPyright Trace for rand.py - $(date)" >> post_traces/pyright_rand.txt
-        pyright rand.py >> post_traces/pyright_rand.txt
-    - uses: jakebailey/pyright-action@v1
+    # - name: Run pyright and save traces with timestamp
+    #   run: |
+    #     mkdir -p post_traces
+    #     echo -e "\nPyright Trace for hw2_debugging.py - $(date)" >> post_traces/pyright_hw2_debugging.txt
+    #     pyright hw2_debugging.py >> post_traces/pyright_hw2_debugging.txt
+    #     echo -e "\nPyright Trace for rand.py - $(date)" >> post_traces/pyright_rand.txt
+    #     pyright rand.py >> post_traces/pyright_rand.txt
+    # - uses: jakebailey/pyright-action@v1
 
     - name: Test with pytest
       run: |
