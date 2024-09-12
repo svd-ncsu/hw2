@@ -1,0 +1,6 @@
+
+Flake8 Trace  - Thu Sep 12 23:07:09 UTC 2024
+flake8.checker            MainProcess    249 INFO     Making checkers
+flake8.main.application   MainProcess    290 INFO     Finished running
+flake8.main.application   MainProcess    290 INFO     Reporting errors
+flake8.main.application   MainProcess    290 INFO     Found a total of 1 violations and reported 0
