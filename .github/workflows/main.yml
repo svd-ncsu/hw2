@@ -73,7 +73,9 @@ jobs:
     #   run: 
     #     genbadge coverage -i - < reports/coverage/coverage.xml -o - > coverage-badge.svg
 
-    
+    - name: Create Flake8 badge
+      run:
+        genbadge flake8 -v -i - < reports/flake8/flake8stats.txt -o - > reports/flake8/flake8-badge.svg
       
     
 
@@ -87,7 +89,6 @@ jobs:
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
 
     - name: Test with pytest
       run: |
