@@ -41,13 +41,6 @@ jobs:
         git add .
         git diff-index --quiet HEAD || git commit -m "Automatically format code with autopep8"
     
-    - name: Push changes
-      if: success()
-      run: |
-        git push
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    
     # Run Pyright and append traces with timestamps
     - name: Run pyright and save traces with timestamp
       run: |
@@ -62,8 +55,15 @@ jobs:
         echo "Flake8 Trace for hw2_debugging.py - $(date)" >> post_traces/flake8_hw2_debugging.txt
         flake8 --verbose hw2_debugging.py >> post_traces/flake8_hw2_debugging.txt
         echo "Flake8 Trace for rand.py - $(date)" >> post_traces/flake8_rand.txt
-        flake8 --verbose rand.py >> post_traces/flake8_rand.txt 
-        
+        flake8 --verbose rand.py >> post_traces/flake8_rand.txt     
+
+    - name: Push changes
+      if: success()
+      run: |
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Test with pytest
       run: |
         pytest test.py
