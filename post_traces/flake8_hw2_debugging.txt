@@ -12,3 +12,5 @@ hw2_debugging.py:18:29: E711 comparison to None should be 'if cond is None:'
 Flake8 Trace for hw2_debugging.py - Thu Sep 12 17:34:18 UTC 2024
 
 Flake8 Trace for hw2_debugging.py - Thu Sep 12 19:20:40 UTC 2024
+
+Flake8 Trace for hw2_debugging.py - Thu Sep 12 19:32:04 UTC 2024
