@@ -4,5 +4,5 @@
 ![Build Status](https://github.com/svd-ncsu/hw2/actions/workflows/main.yml/badge.svg)
 ![Flake8 Status](./reports/flake8/flake8-badge.svg?dummy=8484744)
 [![PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
-![Coverage Status](./coverage-badge.svg?dummy=8484744)
+<!-- ![Coverage Status](./coverage-badge.svg?dummy=8484744) -->
 [![Checked with pyright](https://microsoft.github.io/pyright/img/pyright_badge.svg)](https://microsoft.github.io/pyright/)

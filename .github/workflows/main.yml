@@ -65,13 +65,13 @@ jobs:
       run: |
         pytest test.py
 
-    - name: Code Coverage report
-      run: 
-        pytest --cov-report xml:reports/coverage/coverage.xml --cov=. test.py
+    # - name: Code Coverage report
+    #   run: 
+    #     pytest --cov-report xml:reports/coverage/coverage.xml --cov=. test.py
 
-    - name: Create Coverage badge
-      run: 
-        genbadge coverage -i - < reports/coverage/coverage.xml -o - > coverage-badge.svg
+    # - name: Create Coverage badge
+    #   run: 
+    #     genbadge coverage -i - < reports/coverage/coverage.xml -o - > coverage-badge.svg
 
     - name: Create Flake8 badge
       run:
