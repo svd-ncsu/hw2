@@ -76,5 +76,8 @@ jobs:
 
     - name: Code Coverage report
       run: 
-        pytest --cov-report xml:post_traces/coverage.xml --cov=. test.py
+        pytest --cov-report xml:reports/coverage/coverage.xml --cov=. test.py
 
+    - name: Create Badge
+      run: 
+        genbadge flake8 -i - < post_traces/flake8_hw2_debugging
