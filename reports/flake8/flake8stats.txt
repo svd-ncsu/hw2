@@ -68,3 +68,5 @@ flake8.main.application   MainProcess    108 INFO     Reporting errors
 flake8.main.application   MainProcess    108 INFO     Found a total of 1 violations and reported 0
 ./rand.py:9:10: E999 SyntaxError: cannot assign to function call here. Maybe you meant '==' instead of '='?
 1     E999 SyntaxError: cannot assign to function call here. Maybe you meant '==' instead of '='?
+./rand.py:9:10: E999 SyntaxError: cannot assign to function call here. Maybe you meant '==' instead of '='?
+1     E999 SyntaxError: cannot assign to function call here. Maybe you meant '==' instead of '='?
