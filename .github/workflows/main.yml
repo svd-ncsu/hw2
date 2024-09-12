@@ -70,10 +70,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Test with pytest
+    - name: Test and coverage with pytest
       run: |
-        pytest test.py
-
-    - name: Code Coverage report
-      run: 
-        pytest --cov-report xml:coverage/coverage.xml
+        pytest --cov-report test.py xml:coverage.xml
