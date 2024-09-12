@@ -63,9 +63,7 @@ jobs:
     #     pyright rand.py >> post_traces/pyright_rand.txt
     # - uses: jakebailey/pyright-action@v1
 
-    - name: Test with pytest
-      run: |
-        pytest test.py
+    
 
     # - name: Code Coverage report
     #   run: 
@@ -78,6 +76,10 @@ jobs:
     - name: Create Flake8 badge
       run:
         genbadge flake8 -v -i - < reports/flake8/flake8stats.txt -o - > reports/flake8/flake8-badge.svg
+      
+    - name: Test with pytest
+      run: |
+        pytest test.py
 
     - name: Push changes
       if: success()
