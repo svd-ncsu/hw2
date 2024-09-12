@@ -58,6 +58,7 @@ jobs:
         flake8 --verbose hw2_debugging.py >> post_traces/flake8_hw2_debugging.txt || true
         echo -e "\nFlake8 Trace for rand.py - $(date)" >> post_traces/flake8_rand.txt
         flake8 --verbose rand.py >> post_traces/flake8_rand.txt || true
+        flake8 hw2_debugging.py --exit-zero --format=html --htmldir ./reports/flake8 --statistics --tee --output-file flake8stats.txt
 
     - name: Push changes
       if: success()
@@ -80,4 +81,4 @@ jobs:
 
     - name: Create Badge
       run: 
-        genbadge flake8 -v -i - < post_traces/flake8_hw2_debugging.txt -o - > flake8-badge.svg
+        genbadge flake8 -v -i - < reports/flake8/flake8stats.txt -o - > flake8-badge.svg
