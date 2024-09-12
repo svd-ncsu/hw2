@@ -77,6 +77,3 @@ jobs:
     - name: Code Coverage report
       run: 
         pytest --coverage-report xml:coverage/coverage.xml
-
-    - name: Code Coverage Badge
-      run: genbadge coverage
