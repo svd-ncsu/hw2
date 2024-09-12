@@ -3,4 +3,4 @@
 [![License](https://img.shields.io/github/license/svd-ncsu/hw1.svg)](https://github.com/svd-ncsu/hw2/blob/main/LICENSE.md)
 ![Build Status](https://github.com/svd-ncsu/hw2/actions/workflows/main.yml/badge.svg)
 [![Flake8 Status](./reports/flake8/flake8-badge.svg?dummy=8484744)]
-![Autopep8](https://github.com/svd-ncsu/<hw2/actions/workflows/main.yml/badge.svg?event=push)
+![Autopep8](https://github.com/svd-ncsu/hw2/actions/workflows/main.yml/badge.svg?event=push)
