@@ -79,7 +79,10 @@ jobs:
       run: 
         pytest --cov-report xml:reports/coverage/coverage.xml --cov=. test.py
 
-    - name: Create Badge
+    - name: Create Coverage badge
       run: 
         genbadge coverage
+
+    - name: Create Flake8 badge
+      run:
         genbadge flake8 -v -i - < reports/flake8/flake8stats.txt -o - > reports/flake8/flake8-badge.svg
