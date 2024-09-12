@@ -52,7 +52,7 @@ jobs:
         > reports/flake8/flake8stats.txt
         flake8 --exit-zero --statistics --tee --output-file reports/flake8/flake8stats.txt
 
-    Run Pyright and append traces with timestamps
+    # Run Pyright and append traces with timestamps
     - name: Run pyright and save traces with timestamp
       run: |
         mkdir -p post_traces
