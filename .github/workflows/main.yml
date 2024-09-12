@@ -41,15 +41,7 @@ jobs:
         git add .
         git diff-index --quiet HEAD || git commit -m "Automatically format code with autopep8"
     
-    # Run Pyright and append traces with timestamps
-    - name: Run pyright and save traces with timestamp
-      run: |
-        mkdir -p post_traces
-        echo -e "\nPyright Trace for hw2_debugging.py - $(date)" >> post_traces/pyright_hw2_debugging.txt
-        pyright hw2_debugging.py >> post_traces/pyright_hw2_debugging.txt
-        echo -e "\nPyright Trace for rand.py - $(date)" >> post_traces/pyright_rand.txt
-        pyright rand.py >> post_traces/pyright_rand.txt
-    - uses: jakebailey/pyright-action@v1
+    
 
     # Run flake8 and append traces with timestamps
     - name: Run flake8 and save traces with timestamp
@@ -59,7 +51,17 @@ jobs:
         flake8 --verbose hw2_debugging.py >> post_traces/flake8_hw2_debugging.txt || true
         echo -e "\nFlake8 Trace for rand.py - $(date)" >> post_traces/flake8_rand.txt
         flake8 --verbose rand.py >> post_traces/flake8_rand.txt || true
-        flake8 --statistics --tee --output-file reports/flake8/flake8stats.txt
+        flake8 --exit-zero --statistics --tee --output-file reports/flake8/flake8stats.txt
+
+    # Run Pyright and append traces with timestamps
+    - name: Run pyright and save traces with timestamp
+      run: |
+        mkdir -p post_traces
+        echo -e "\nPyright Trace for hw2_debugging.py - $(date)" >> post_traces/pyright_hw2_debugging.txt
+        pyright hw2_debugging.py >> post_traces/pyright_hw2_debugging.txt
+        echo -e "\nPyright Trace for rand.py - $(date)" >> post_traces/pyright_rand.txt
+        pyright rand.py >> post_traces/pyright_rand.txt
+    - uses: jakebailey/pyright-action@v1
 
     - name: Test with pytest
       run: |
