@@ -81,4 +81,5 @@ jobs:
 
     - name: Create Badge
       run: 
+        genbadge coverge
         genbadge flake8 -v -i - < reports/flake8/flake8stats.txt -o - > reports/flake8/flake8-badge.svg
