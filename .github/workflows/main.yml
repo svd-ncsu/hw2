@@ -47,7 +47,7 @@ jobs:
     - name: Run flake8 and save traces with timestamp
       run: |
         mkdir -p post_traces
-        echo -e "\nFlake8 Trace  - $(date)" >> post_traces/flake8_hw2_debugging.txt
+        echo -e "\nFlake8 Trace  - $(date)" >> post_traces/flake8_trace.txt
         flake8 --verbose --tee --output-file post_traces/flake8_trace.txt
         > reports/flake8/flake8stats.txt
         flake8 --exit-zero --statistics --tee --output-file reports/flake8/flake8stats.txt
@@ -56,7 +56,7 @@ jobs:
     - name: Run pyright and save traces with timestamp
       run: |
         mkdir -p post_traces
-        echo -e "\nPyright Trace for rand.py - $(date)" >> post_traces/pyright_rand.txt
+        echo -e "\nPyright Trace for rand.py - $(date)" >> post_traces/pyright_trace.txt
         pyright >> post_traces/pyright_trace.txt
     - uses: jakebailey/pyright-action@v1
 

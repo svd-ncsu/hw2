@@ -1,4 +1,0 @@
-flake8.checker            MainProcess    233 INFO     Making checkers
-flake8.main.application   MainProcess    274 INFO     Finished running
-flake8.main.application   MainProcess    274 INFO     Reporting errors
-flake8.main.application   MainProcess    274 INFO     Found a total of 1 violations and reported 0
