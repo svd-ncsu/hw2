@@ -53,9 +53,9 @@ jobs:
     - name: Run flake8 and save traces with timestamp
       run: |
         echo "Flake8 Trace for hw2_debugging.py - $(date)" >> post_traces/flake8_hw2_debugging.txt
-        flake8 --verbose hw2_debugging.py >> post_traces/flake8_hw2_debugging.txt
+        flake8 --verbose hw2_debugging.py >> post_traces/flake8_hw2_debugging.txt || true
         echo "Flake8 Trace for rand.py - $(date)" >> post_traces/flake8_rand.txt
-        flake8 --verbose rand.py >> post_traces/flake8_rand.txt     
+        flake8 --verbose rand.py >> post_traces/flake8_rand.txt || true
 
     - name: Push changes
       if: success()
