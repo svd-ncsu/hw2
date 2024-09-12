@@ -60,17 +60,6 @@ jobs:
         flake8 --verbose rand.py >> post_traces/flake8_rand.txt || true
         flake8 -v --tee --output-file reports/flake8/flake8stats.txt
 
-    - name: Push changes
-      if: success()
-      run: |
-        git config --global user.name "GitHub Action"
-        git config --global user.email "action@github.com"
-        git add .
-        git diff-index --quiet HEAD || git commit -m "Update traces"
-        git push
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
     - name: Test with pytest
       run: |
         pytest test.py
@@ -86,3 +75,14 @@ jobs:
     - name: Create Flake8 badge
       run:
         genbadge flake8 -v -i - < reports/flake8/flake8stats.txt -o - > reports/flake8/flake8-badge.svg
+        
+    - name: Push changes
+      if: success()
+      run: |
+        git config --global user.name "GitHub Action"
+        git config --global user.email "action@github.com"
+        git add .
+        git diff-index --quiet HEAD || git commit -m "Update traces"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
