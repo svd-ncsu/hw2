@@ -49,6 +49,7 @@ jobs:
         pyright hw2_debugging.py >> post_traces/pyright_hw2_debugging.txt
         echo -e "\nPyright Trace for rand.py - $(date)" >> post_traces/pyright_rand.txt
         pyright rand.py >> post_traces/pyright_rand.txt
+    - uses: jakebailey/pyright-action@v1
 
     # Run flake8 and append traces with timestamps
     - name: Run flake8 and save traces with timestamp
