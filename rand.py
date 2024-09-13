@@ -1,6 +1,5 @@
 import subprocess
 
-
 def random_array(arr):
     shuffled_num = None
     for i in range(len(arr)):
