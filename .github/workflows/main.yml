@@ -40,8 +40,6 @@ jobs:
         git config --global user.email "action@github.com"
         git add .
         git diff-index --quiet HEAD || git commit -m "Automatically format code with autopep8"
-    
-    
 
     # Run flake8 and append traces with timestamps
     - name: Run flake8 and save traces with timestamp
@@ -60,40 +58,30 @@ jobs:
         pyright >> post_traces/pyright_trace.txt
     - uses: jakebailey/pyright-action@v1
 
-    
-
-    # - name: Code Coverage report
-    #   run: 
-    #     pytest --cov-report xml:reports/coverage/coverage.xml --cov=. test.py
-
-    # - name: Create Coverage badge
-    #   run: 
-    #     genbadge coverage -i - < reports/coverage/coverage.xml -o - > coverage-badge.svg
-
+    # Pushing updates in post_traces via workflow
     - name: Push changes
       if: success()
       run: |
         git config --global user.name "GitHub Action"
         git config --global user.email "action@github.com"
         git add .
-        git diff-index --quiet HEAD || git commit -m "Update traces"
+        git diff-index --quiet HEAD || git commit -m "Appended traces"
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+    # Generating flake8 badge based on reports
     - name: Create Flake8 badge
       run:
         genbadge flake8 -v -i - < reports/flake8/flake8stats.txt -o - > reports/flake8/flake8-badge.svg
       
-    
-
-    - name: Push changes
+    - name: Pushing Flake8 changes
       if: success()
       run: |
         git config --global user.name "GitHub Action"
         git config --global user.email "action@github.com"
         git add .
-        git diff-index --quiet HEAD || git commit -m "Update traces"
+        git diff-index --quiet HEAD || git commit -m "Updated flake8 badge"
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
