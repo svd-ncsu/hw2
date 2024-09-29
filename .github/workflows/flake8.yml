@@ -1,7 +1,4 @@
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
-
-name: Python application
+name: Flake8
 
 on:
   push:
@@ -27,21 +24,8 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install autopep8 flake8 flake8_html pyright pytest pytest-cov genbadge
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        pip install flake8 flake8_html genbadge
 
-    - name: Format code with autopep
-      run: |
-        autopep8 --in-place --recursive .
-        
-    - name: Check for changes
-      run: |
-        git config --global user.name "GitHub Action"
-        git config --global user.email "action@github.com"
-        git add .
-        git diff-index --quiet HEAD || git commit -m "Automatically format code with autopep8"
-
-    # Run flake8 and append traces with timestamps
     - name: Run flake8 and save traces with timestamp
       run: |
         mkdir -p post_traces
@@ -50,22 +34,16 @@ jobs:
         > reports/flake8/flake8stats.txt
         flake8 --exit-zero --statistics --tee --output-file reports/flake8/flake8stats.txt
 
-    # Run Pyright and append traces with timestamps
-    - name: Run pyright and save traces with timestamp
-      run: |
-        mkdir -p post_traces
-        echo -e "\nPyright Trace - $(date)" >> post_traces/pyright_trace.txt
-        pyright >> post_traces/pyright_trace.txt
-    - uses: jakebailey/pyright-action@v1
-
-    # Pushing updates in post_traces via workflow
     - name: Push changes
       if: success()
       run: |
         git config --global user.name "GitHub Action"
         git config --global user.email "action@github.com"
         git add .
-        git diff-index --quiet HEAD || git commit -m "Appended traces"
+        git pull
+        git diff-index --quiet HEAD || git commit -m "Appended flake8 traces"
+        git push origin main:main
+
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -73,18 +51,15 @@ jobs:
     - name: Create Flake8 badge
       run:
         genbadge flake8 -v -i - < reports/flake8/flake8stats.txt -o - > reports/flake8/flake8-badge.svg
-      
+
     - name: Pushing Flake8 changes
       if: success()
       run: |
         git config --global user.name "GitHub Action"
         git config --global user.email "action@github.com"
         git add .
+        git pull
         git diff-index --quiet HEAD || git commit -m "Updated flake8 badge"
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Test with pytest
-      run: |
-        pytest test.py
